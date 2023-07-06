@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.date {
+  font-size: 14px;
+  color: #999;
+}
+
+.publish-date {
+  font-weight: bold;
+}
+
+article {
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.author {
+  font-size: 14px;
+  color: #999;
+  margin-top: 10px;
+}
+
+.content {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+footer {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+/* Previous CSS styles */
+
+/* Extra css*/
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+}
+
+/* Additional CSS for syntax highlighting (optional) */
+pre code {
+  display: block;
+  overflow: auto;
+  padding: 0;
+  line-height: 1.5;
+  background-color: inherit;
+  color: #333;
+}
