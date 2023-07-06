@@ -1,2 +1,1 @@
-- Make "general" styles folder, for blog pages, gallery, etc.
 - Ask chatGPT for ideas to implement (both style and content)

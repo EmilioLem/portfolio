@@ -154,3 +154,23 @@ footer {
   text-align: center;
   padding: 20px;
 }
+
+#sIuse .manyBoxContainer{
+  text-align: center;
+}
+#sIuse .manyBoxes{
+  display: inline-block;
+  background-color: #e9e2c5;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 8px;
+}
+#sIuse .opSystem{
+  background-color: rgba(145, 108, 180, 0.455);
+}
+#sIuse .windApps{
+  background-color: rgba(66, 140, 194, 0.512);
+}
+#sIuse .unityRelated{
+  background-color: rgba(66, 194, 130, 0.512);
+}
