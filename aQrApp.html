@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRcodes</title>
+    <style>
+        .qrImage{
+            max-width: 80%;
+            max-height: 80%;
+        }
+        #qrImageContainer{
+            /* text-align: center; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        body{
+            padding: 1cm;
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="form">
+
+        <h1>Bienvenido a la plataforma generadora de QR's</h1>
+        <br>
+        <p>Base: 
+            <input style="width: 60%;" type="text" placeholder="Introduce el codigo de alguno de tus Qr's de comida" oninput="baseChange(this)" id="baseInput">
+        </p>
+        <br>
+        <input type="date" id="dateInput">
+        <br>
+        <p>Da un <b>doble click</b> al perrito para obtener tu QR</p>
+    </div>
+    <br>
+    
+    <img src="./cuteDog.gif" alt="" class="qrImage" ondblclick="generateQr(this)">
+    
+      
+    <script>
+        var currentDate = new Date();
+        document.getElementById("dateInput").value = formatDate(currentDate.toLocaleDateString());
+
+        if(localStorage.getItem("baseCode") != null){
+            document.getElementById("baseInput").value = localStorage.getItem("baseCode");
+        }
+        
+        
+        function baseChange(baseInput){
+            localStorage.setItem("baseCode", baseInput.value);
+        }
+        
+        function generateQr(theImage){ 
+            var baseCode = document.getElementById("baseInput").value;
+            
+            let theDesireDate = document.getElementById("dateInput").value;
+            
+            
+            let qrCodeLink = replaceDates(baseCode, theDesireDate);
+
+            if(qrCodeLink.length != 41 && qrCodeLink.length != 42){
+                alert("Bad code base")
+                return;
+            }
+            document.documentElement.requestFullscreen().catch((e)=>{
+                console.log(e);
+            });
+            document.getElementById("form").style.display = "none";
+            theImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${qrCodeLink}`; //%23 = #
+        }
+
+
+        function formatDate(inputDate){
+            const dateComponents = inputDate.split('/');
+
+            const month = dateComponents[0];
+            const day = dateComponents[1];
+            const year = dateComponents[2];
+
+            const formattedDate = new Date(`${year}-${month}-${day}`);
+            
+            const yyyy = formattedDate.getFullYear();
+            const mm = String(formattedDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(formattedDate.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+
+        function replaceDates(inputString, newDate) {
+            const regex = /\d{4}-\d{2}-\d{2}/g;
+            const replacedString = inputString.replace(regex, newDate);
+            const finalResult = replacedString.replace(/#/g, '%23');
+            return finalResult;
+        }
+
+        // Komentario
+
+    </script>
+</body>
+</html>
