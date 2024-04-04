@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>K-means Clustering Simulation</title>
 <style>
+    body{}
     canvas {
         border: 1px solid black;
         background-color: white;
     }
+    /*https://colorhunt.co/palette/191a191e51284e9f3dd8e9a8*/
     *{
         margin: 5px;
         text-align: center;
@@ -26,7 +28,7 @@
     /*Sponsor / Contact???*/
     .hostAd *{
         background: black;
-        color: rgb(225, 236, 194);;
+        color: rgb(225, 236, 194);
     }
     .hostAd {
       text-align: center;
@@ -59,14 +61,42 @@
     a:hover {
       text-decoration: underline;
     }
+
+    #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #counter {
+        background-color: black;
+        margin-left: 5%;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+    }
+    #counter *{
+        color: rgb(225, 236, 194);
+        background: black;
+    }
+
 </style>
 </head>
 <body>
 <h1>K-means Clustering Simulation</h1>
-<canvas id="canvas" width="500" height="500"></canvas>
+<div id="container">
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <div id="counter">
+        <h2>Counter</h2>
+        <p>Points: <span id="pointCount">0</span></p>
+        <p>Centroids: <span id="centroidCount">0</span></p>
+        <p>Steps: <span id="stepsCount">0</span></p>
+    </div>
+</div>
 <br>
 <button onclick="addPoint()">Add Point</button>
 <button onclick="addCentroid()">Add Centroid</button>
+<button onclick="addCorrectAofC()">Sturge's Law #of centroids</button>
 <br>
 <button onclick="toggleAddPoints()" id="addingPoints">Custom point</button>
 <button onclick="toggleAddCentroids()" id="addingCentroids">Custom Centroid</button>
@@ -96,8 +126,9 @@
 <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    const points = [];
-    const centroids = [];
+    var points = [];
+    var centroids = [];
+    var stepsCount = 0;
     const COLORS = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'cyan', 'magenta', 'brown', 'pink', 'teal', 'lavender', 'maroon', 'olive', 'navy', 'indigo', 'tan', 'salmon', 'coral', 'gold', 'silver', 'skyblue', 'lime', 'orchid', 'steelblue', 'violet', 'crimson', 'turquoise', 'sienna', 'peru', 'rosybrown', 'cadetblue', 'thistle', 'chocolate', 'firebrick', 'slateblue', 'darkorange', 'darkkhaki', 'lightseagreen', 'mediumvioletred', 'darkslategray', 'royalblue', 'darkolivegreen', 'saddlebrown', 'darkslategrey', 'darkgoldenrod', 'dodgerblue', 'tomato', 'mediumseagreen', 'burlywood', 'darkorchid', 'darkcyan', 'goldenrod', 'seagreen', 'cornflowerblue', 'indianred', 'mediumslateblue', 'darkseagreen', 'palevioletred', 'mediumaquamarine', 'dimgray', 'mediumturquoise', 'lightcoral', 'springgreen', 'darkred', 'slategray', 'midnightblue', 'darkgreen', 'darkturquoise', 'chocolate', 'cadetblue', 'salmon', 'darkorange', 'firebrick', 'sienna', 'saddlebrown', 'darkolivegreen', 'olive', 'darkslategray', 'slategray', 'darkslategrey', 'darkgoldenrod', 'darkred', 'darkgreen', 'darkblue', 'navy', 'darkviolet', 'darkgray', 'darkmagenta', 'brown', 'black'];
     //console.log(`${COLORS.length} colors available!!!`); //91
 
@@ -113,6 +144,14 @@
         const y = Math.floor(Math.random() * canvas.height);
         centroids.push({ x, y });
         draw(false);
+    }
+
+    function addCorrectAofC(){
+        let ammountCorrect = Math.log(points.length) + 1; 
+        centroids = [];
+        for(let i=0; i<ammountCorrect; i++){
+            addCentroid();
+        }
     }
 
 
@@ -190,6 +229,7 @@
     }
 
     function draw(sim) {
+        updateCounter()
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw centroids
@@ -213,6 +253,13 @@
         assignPointsToCentroids();
         recalculateCentroids();
         draw(true);
+        stepsCount++;
+        document.getElementById('stepsCount').textContent = stepsCount;
+    }
+
+    function updateCounter() {
+        document.getElementById('pointCount').textContent = points.length;
+        document.getElementById('centroidCount').textContent = centroids.length;
     }
 </script>
 </body>
