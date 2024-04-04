@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-means Clustering Simulation</title>
+<style>
+    canvas {
+        border: 1px solid black;
+        background-color: white;
+    }
+    *{
+        margin: 5px;
+        text-align: center;
+        color: rgb(216, 233, 168);
+        background-color: rgb(25, 26, 25);
+        font-size: 1rem;
+    }
+    h1{
+        font-size: 2rem;
+    }
+</style>
+</head>
+<body>
+<h1>K-means Clustering Simulation</h1>
+<canvas id="canvas" width="500" height="500"></canvas>
+<br>
+<button onclick="addPoint()">Add Point</button>
+<button onclick="addCentroid()">Add Centroid</button>
+<br>
+<button onclick="toggleAddPoints()">Custom point</button>
+<button onclick="toggleAddCentroids()">Custom Centroid</button>
+<br>
+<button onclick="runSimulation()">Run Simulation</button>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const points = [];
+    const centroids = [];
+    const COLORS = ['red', 'blue', 'green', 'orange', 'purple']; // Array of colors for centroids
+
+    function addPoint() {
+        const x = Math.floor(Math.random() * canvas.width);
+        const y = Math.floor(Math.random() * canvas.height);
+        points.push({ x, y });
+        draw(false);
+    }
+
+    function addCentroid() {
+        const x = Math.floor(Math.random() * canvas.width);
+        const y = Math.floor(Math.random() * canvas.height);
+        centroids.push({ x, y });
+        draw(false);
+    }
+
+
+    let canAddPoints = false;
+    let canAddCentroids = false;
+
+    function toggleAddPoints() {
+        canAddPoints = !canAddPoints;
+        canAddCentroids = false;
+    }
+
+    function toggleAddCentroids() {
+        canAddCentroids = !canAddCentroids;
+        canAddPoints = false;
+    }
+    
+    canvas.addEventListener('click', (event)=>{
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (canAddPoints) {
+            points.push({ x, y });
+        }
+        if (canAddCentroids) {
+            centroids.push({ x, y });
+        }
+        draw();
+    });
+
+
+
+    function distance(point1, point2) {
+        return Math.sqrt(Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2));
+    }
+
+    function assignPointsToCentroids() {
+        for (const point of points) {
+            let minDistance = Infinity;
+            let closestCentroidIndex = -1;
+            for (let i = 0; i < centroids.length; i++) {
+                const dist = distance(point, centroids[i]);
+                if (dist < minDistance) {
+                    minDistance = dist;
+                    closestCentroidIndex = i;
+                }
+            }
+            point.closestCentroidIndex = closestCentroidIndex;
+        }
+    }
+
+    function recalculateCentroids() {
+        for (let i = 0; i < centroids.length; i++) {
+            let totalX = 0;
+            let totalY = 0;
+            let numPoints = 0;
+            for (const point of points) {
+                if (point.closestCentroidIndex === i) {
+                    totalX += point.x;
+                    totalY += point.y;
+                    numPoints++;
+                }
+            }
+            if (numPoints > 0) {
+                centroids[i].x = totalX / numPoints;
+                centroids[i].y = totalY / numPoints;
+            }
+        }
+    }
+
+    function draw(sim) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw centroids
+        for (let i = 0; i < centroids.length; i++) {
+            ctx.beginPath();
+            ctx.arc(centroids[i].x, centroids[i].y, 10, 0, 2 * Math.PI);
+            ctx.fillStyle = COLORS[i % COLORS.length];
+            ctx.fill();
+        }
+
+        // Draw points
+        for (const point of points) {
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = sim? COLORS[point.closestCentroidIndex % COLORS.length] : 'black';
+            ctx.fill();
+        }
+    }
+
+    function runSimulation() {
+        assignPointsToCentroids();
+        recalculateCentroids();
+        draw(true);
+    }
+</script>
+</body>
+</html>
