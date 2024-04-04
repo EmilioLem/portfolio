@@ -98,7 +98,8 @@
     const ctx = canvas.getContext('2d');
     const points = [];
     const centroids = [];
-    const COLORS = ['red', 'blue', 'green', 'orange', 'purple']; // Array of colors for centroids
+    const COLORS = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'cyan', 'magenta', 'brown', 'pink', 'teal', 'lavender', 'maroon', 'olive', 'navy', 'indigo', 'tan', 'salmon', 'coral', 'gold', 'silver', 'skyblue', 'lime', 'orchid', 'steelblue', 'violet', 'crimson', 'turquoise', 'sienna', 'peru', 'rosybrown', 'cadetblue', 'thistle', 'chocolate', 'firebrick', 'slateblue', 'darkorange', 'darkkhaki', 'lightseagreen', 'mediumvioletred', 'darkslategray', 'royalblue', 'darkolivegreen', 'saddlebrown', 'darkslategrey', 'darkgoldenrod', 'dodgerblue', 'tomato', 'mediumseagreen', 'burlywood', 'darkorchid', 'darkcyan', 'goldenrod', 'seagreen', 'cornflowerblue', 'indianred', 'mediumslateblue', 'darkseagreen', 'palevioletred', 'mediumaquamarine', 'dimgray', 'mediumturquoise', 'lightcoral', 'springgreen', 'darkred', 'slategray', 'midnightblue', 'darkgreen', 'darkturquoise', 'chocolate', 'cadetblue', 'salmon', 'darkorange', 'firebrick', 'sienna', 'saddlebrown', 'darkolivegreen', 'olive', 'darkslategray', 'slategray', 'darkslategrey', 'darkgoldenrod', 'darkred', 'darkgreen', 'darkblue', 'navy', 'darkviolet', 'darkgray', 'darkmagenta', 'brown', 'black'];
+    //console.log(`${COLORS.length} colors available!!!`); //91
 
     function addPoint() {
         const x = Math.floor(Math.random() * canvas.width);
