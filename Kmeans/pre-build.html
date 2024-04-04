@@ -95,6 +95,7 @@
 </div>
 <br>
 <button onclick="addPoint()">Add Point</button>
+<button onclick="add10xPoints()">10x P</button>
 <button onclick="addCentroid()">Add Centroid</button>
 <button onclick="addCorrectAofC()">Sturge's Law #of centroids</button>
 <br>
@@ -129,6 +130,7 @@
     var points = [];
     var centroids = [];
     var stepsCount = 0;
+    var oldPoints = []
     const COLORS = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'cyan', 'magenta', 'brown', 'pink', 'teal', 'lavender', 'maroon', 'olive', 'navy', 'indigo', 'tan', 'salmon', 'coral', 'gold', 'silver', 'skyblue', 'lime', 'orchid', 'steelblue', 'violet', 'crimson', 'turquoise', 'sienna', 'peru', 'rosybrown', 'cadetblue', 'thistle', 'chocolate', 'firebrick', 'slateblue', 'darkorange', 'darkkhaki', 'lightseagreen', 'mediumvioletred', 'darkslategray', 'royalblue', 'darkolivegreen', 'saddlebrown', 'darkslategrey', 'darkgoldenrod', 'dodgerblue', 'tomato', 'mediumseagreen', 'burlywood', 'darkorchid', 'darkcyan', 'goldenrod', 'seagreen', 'cornflowerblue', 'indianred', 'mediumslateblue', 'darkseagreen', 'palevioletred', 'mediumaquamarine', 'dimgray', 'mediumturquoise', 'lightcoral', 'springgreen', 'darkred', 'slategray', 'midnightblue', 'darkgreen', 'darkturquoise', 'chocolate', 'cadetblue', 'salmon', 'darkorange', 'firebrick', 'sienna', 'saddlebrown', 'darkolivegreen', 'olive', 'darkslategray', 'slategray', 'darkslategrey', 'darkgoldenrod', 'darkred', 'darkgreen', 'darkblue', 'navy', 'darkviolet', 'darkgray', 'darkmagenta', 'brown', 'black'];
     //console.log(`${COLORS.length} colors available!!!`); //91
 
@@ -145,9 +147,14 @@
         centroids.push({ x, y });
         draw(false);
     }
+    function add10xPoints(){
+        for(let i=0; i<10; i++){
+            addPoint();
+        }
+    }
 
     function addCorrectAofC(){
-        let ammountCorrect = Math.log(points.length) + 1; 
+        let ammountCorrect = Math.log(points.length);// + 1; 
         centroids = [];
         for(let i=0; i<ammountCorrect; i++){
             addCentroid();
@@ -251,10 +258,15 @@
 
     function runSimulation() {
         assignPointsToCentroids();
+        console.log(JSON.stringify(oldPoints));
+        if(oldPoints != JSON.stringify(points)){
+            console.log("there where changes");
+            stepsCount++;
+            document.getElementById('stepsCount').textContent = stepsCount;
+            oldPoints = JSON.stringify(points);
+        }
         recalculateCentroids();
         draw(true);
-        stepsCount++;
-        document.getElementById('stepsCount').textContent = stepsCount;
     }
 
     function updateCounter() {
