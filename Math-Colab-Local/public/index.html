@@ -1,0 +1,82 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared LaTeX Editor</title>
+    <!-- Include MathJax library -->
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        #shared-text-input {
+            width: 100%;
+            height: 200px;
+        }
+        .latex-output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shared Text Editor</h1>
+    <div class="input-container">
+        <label for="shared-text-input">Shared Text:</label>
+        <textarea id="shared-text-input" placeholder="Type here..."></textarea>
+    </div>
+    <div class="latex-output" id="latex-output">
+        LaTeX code will be displayed here...
+    </div>
+
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
+    <script>
+        function updateLatexOutput() {
+            // Get the input value
+            var latexInput = document.getElementById('shared-text-input').value;
+            // Render the LaTeX code using MathJax
+            MathJax.texReset();
+            var options = MathJax.getMetricsFor(document.getElementById('latex-output'));
+            var latexOutput = MathJax.tex2chtml(latexInput, options);
+            // Clear the output container
+            document.getElementById('latex-output').innerHTML = '';
+            // Append the rendered output
+            document.getElementById('latex-output').appendChild(latexOutput);
+            // Rerender MathJax
+            MathJax.typeset();
+        }
+
+        const socket = io();
+
+        // Function to update the shared text
+        function updateSharedText() {
+            // Get the input value
+            var sharedTextInput = document.getElementById('shared-text-input').value;
+            // Emit the updated shared text to the server
+            socket.emit('updateSharedText', sharedTextInput);
+        }
+
+        // Add event listener to the input field
+        document.getElementById('shared-text-input').addEventListener('input', ()=>{
+            updateSharedText();
+            updateLatexOutput();
+        });
+
+        // Listen for updates from the server
+        socket.on('updateSharedText', function(sharedText) {
+            // Update the input with the received shared text
+            document.getElementById('shared-text-input').value = sharedText;
+            updateLatexOutput();
+        });
+    </script>
+</body>
+</html>
