@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figuras geométricas</title>
+    <style>
+        *{
+            margin: 10px;
+            font-size: 1.2rem;
+
+        }
+        .inputNum, .groupBox{
+            border: 3px solid gray;
+            max-width: fit-content;
+            padding: 15px;
+            display: inline-block;
+
+        }
+        body{
+            background-color: lightyellow;
+        }
+        #groupBox2>label, #groupBox2>input{
+            display: none;
+        }
+        #groupBox2>input{
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="groupBox1" class="groupBox">
+        <h3>Escoja una figura geométrica:</h3>
+
+        <input type="radio" name="figure" id="cuadrado" value="cuadrado">
+        <label for="cuadrado">Cuadrado</label><br>
+
+        <input type="radio" name="figure" id="rectangulo" value="rectangulo">
+        <label for="rectangulo">Rectángulo</label><br>
+
+        <input type="radio" name="figure" id="triangulo" value="triangulo">
+        <label for="triangulo">Triángulo</label><br>
+
+        <input type="radio" name="figure" id="rombo" value="rombo">
+        <label for="rombo">Rombo</label><br>
+
+        <input type="radio" name="figure" id="trapecio" value="trapecio">
+        <label for="trapecio">Trapecio</label><br>
+
+        <input type="radio" name="figure" id="circulo" value="circulo">
+        <label for="circulo">Círculo</label><br>
+
+        <input type="radio" name="figure" id="poligono" value="poligono">
+        <label for="poligono">Polígono</label><br>
+    </div>
+
+    <div id="groupBox2" class="groupBox">
+        <h3>Datos a ingresar:</h3>
+
+        <label for="lbl_1">Dato 1</label>
+        <input type="number" name="" id="n1">
+
+        <label for="lbl_2">Dato 2</label>
+        <input type="number" name="" id="n2">
+
+        <label for="lbl_3">Dato 3</label>
+        <input type="number" name="" id="n3">
+        <br>
+
+        <label for="lbl_4">Dato 4</label>
+        <input type="number" name="" id="n4">
+
+    </div>
+
+    <div id="groupBox3" class="groupBox">
+        <h3>Resultados:</h3>
+
+        <canvas id="pictrbx_1" width="300" height="200" style="border:1px solid #000;"></canvas>
+        <p>Perímetro: <span id="txtbox_per"></span></p>
+        <p>Área: <span id="txtbox_area"></span></p>
+
+        <button id="btn_calcular">Calcular</button>
+
+    </div>
+
+
+
+    <script>
+        const radioButtons = document.querySelectorAll('input[name="figure"]');
+        const inputsAndLabels = document.getElementById("groupBox2").querySelectorAll('input, label');
+        txtbox_per = document.getElementById("txtbox_per");
+        txtbox_area = document.getElementById("txtbox_area");
+
+        const n1 = document.getElementById("n1");
+        const n2 = document.getElementById("n2");
+        const n3 = document.getElementById("n3");
+        const n4 = document.getElementById("n4");
+        
+        radioButtons.forEach((radio) => {
+            radio.addEventListener('change', () => {
+                inputsAndLabels.forEach(elements =>{
+                    //console.log(index);
+                    elements.style.display='none';
+                })
+                n1.value = 0;
+                n2.value = 0;
+                n3.value = 0;
+                n4.value = 0;
+                dibujarFigura(radio.value);
+                switch(radio.value) {
+                    case "cuadrado":
+                        for(let i=0; i<1*2; i++){
+                            inputsAndLabels[i].style.display="block";
+                        }
+                        inputsAndLabels[0*2].innerText = "Lado";
+                        break;
+
+                    case "rectangulo":
+                        for(let i=0; i<2*2; i++){
+                            inputsAndLabels[i].style.display="block";
+                        }
+                        inputsAndLabels[0*2].innerText = "Largo";
+                        inputsAndLabels[1*2].innerText = "Alto";
+                    break;
+
+                    case "triangulo":
+                        for(let i=0; i<2*2; i++){
+                            inputsAndLabels[i].style.display="block";
+                        }
+                        inputsAndLabels[0*2].innerText = "Base";
+                        inputsAndLabels[1*2].innerText = "Altura";
+                    break;
+
+                    case "rombo":
+                        for(let i=0; i<2*2; i++){
+                            inputsAndLabels[i].style.display="block";
+                        }
+                        inputsAndLabels[0*2].innerText = "Diagonal mayor";
+                        inputsAndLabels[1*2].innerText = "Diagonal menor";
+                    break;
+
+                    case "trapecio":
+                        for(let i=0; i<3*2; i++){
+                            inputsAndLabels[i].style.display="block";
+                        }
+                        inputsAndLabels[0*2].innerText = "Lado grande";
+                        inputsAndLabels[1*2].innerText = "Lado chico";
+                        inputsAndLabels[2*2].innerText = "Altura";
+                    break;
+
+                    case "circulo":
+                        for(let i=0; i<1*2; i++){
+                            inputsAndLabels[i].style.display="block";
+                        }
+                        inputsAndLabels[0*2].innerText = "radio";
+                    break;
+
+                    case "poligono":
+                        for(let i=0; i<3*2; i++){
+                            inputsAndLabels[i].style.display="block";
+                        }
+                        inputsAndLabels[0*2].innerText = "Lados";
+                        inputsAndLabels[1*2].innerText = "Base";
+                        inputsAndLabels[2*2].innerText = "Apotema";
+                    break;
+                }
+            });
+        });
+
+        function dibujarFigura(figura) {
+            const canvas = document.getElementById('pictrbx_1');
+            const ctx = canvas.getContext('2d');
+
+            // Limpiar el canvas antes de dibujar
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+
+            switch(figura) {
+                case 'cuadrado':
+                    ctx.rect(50, 50, 100, 100); // x, y, ancho, alto
+                    break;
+                case 'rectangulo':
+                    ctx.rect(30, 50, 140, 80); // x, y, ancho, alto
+                    break;
+                case 'triangulo':
+                    ctx.moveTo(100, 30); // vértice superior
+                    ctx.lineTo(60, 150); // vértice inferior izquierdo
+                    ctx.lineTo(140, 150); // vértice inferior derecho
+                    ctx.closePath(); // cerrar el triángulo
+                    break;
+                case 'rombo':
+                    ctx.moveTo(100, 30);  // vértice superior
+                    ctx.lineTo(50, 100); // vértice derecho
+                    ctx.lineTo(100, 170); // vértice inferior
+                    ctx.lineTo(150, 100);  // vértice izquierdo
+                    ctx.closePath();      // cerrar el rombo
+
+                    break;
+                case 'trapecio':
+                    ctx.moveTo(50, 80);  // vértice superior izquierdo
+                    ctx.lineTo(150, 80); // vértice superior derecho
+                    ctx.lineTo(130, 180); // vértice inferior derecho
+                    ctx.lineTo(70, 180);  // vértice inferior izquierdo
+                    ctx.closePath(); // cerrar el trapecio
+                    break;
+                case 'circulo':
+                    ctx.arc(100, 100, 50, 0, Math.PI * 2); // x, y, radio, ángulo inicial, ángulo final
+                    break;
+                case 'poligono':
+                    const lado = 50;
+                    const centroX = 100;
+                    const centroY = 150;
+                    for (let i = 0; i < 6; i++) {
+                        ctx.lineTo(
+                            centroX + lado * Math.cos((Math.PI / 3) * i),
+                            centroY + lado * Math.sin((Math.PI / 3) * i)
+                        );
+                    }
+                    ctx.closePath(); // cerrar el hexágono
+                    break;
+                default:
+                    console.log("Figura no reconocida");
+                    break;
+            }
+            
+
+            // Rellenar y dibujar el contorno de la figura
+            ctx.fillStyle = 'lightblue';
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        document.getElementById("btn_calcular").addEventListener('click', ()=>{
+            let selectedFigure = '';
+            radioButtons.forEach((radio) => {
+                if (radio.checked) {
+                    selectedFigure = radio.value;
+                }
+            });
+            const n1v = Number(n1.value);
+            const n2v = Number(n2.value);
+            const n3v = Number(n3.value);
+            const n4v = Number(n4.value);
+            switch(selectedFigure) {
+                case "cuadrado":
+                    txtbox_per.innerText = 4*n1v;
+                    txtbox_area.innerText = n1v**2;
+                    break;
+                
+                case "rectangulo":
+                    txtbox_per.innerText = 2*n1v + 2*n2v;
+                    txtbox_area.innerText = n1v*n2v;
+                break;
+                
+                case "triangulo":
+                    let unLado = Math.sqrt((n1v/2)**2 + n2v**2);                    
+                    txtbox_per.innerText = n1v + 2*unLado;
+                    txtbox_area.innerText = (n1v*n2v)/2;
+                break;
+                
+                case "rombo":
+                    let unLadoR = Math.sqrt((n1v/2)**2 + (n2v/2)**2);                    
+                    txtbox_per.innerText = 4*unLadoR;
+                    txtbox_area.innerText = (n1v*n2v)/2;
+                break;
+                
+                case "trapecio":
+                    let unLadoT = Math.sqrt(((n1v-n2v)/2)**2 + n3v**2);                    
+                    txtbox_per.innerText = n1v + n2v + 2*unLadoT;
+                    txtbox_area.innerText = (n1v+n2v)/2*n3v;
+                break;
+                
+                case "circulo":
+                    txtbox_per.innerText = Math.PI *n1v * 2;
+                    txtbox_area.innerText = Math.PI * n1v**2;                    
+                break;
+                
+                case "poligono":
+                    txtbox_per.innerText = n1v * n2v;
+                    txtbox_area.innerText = (n1v*n3v)/2*n2v;
+
+                    for(let i=0; i<3*2; i++){
+                        inputsAndLabels[i].style.display="block";
+                    }
+                    inputsAndLabels[0*2].innerText = "Lados";
+                    inputsAndLabels[1*2].innerText = "Base";
+                    inputsAndLabels[2*2].innerText = "Apotema";
+                break;
+            }
+        })
+    </script>
+</body>
+</html>
