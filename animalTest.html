@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubre tu animal espiritual</title>
+    <style>
+/*
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+        }
+        label {
+            margin-top: 10px;
+        }
+        select {
+            padding: 5px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 20px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+        }
+	*/
+ /* GENERAL STYLES */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #4d7942; /* Dark green */
+            color:  #f0f8ff;  /* Alice Blue */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-shadow: 0 0 5px #000; /* Add a subtle glow */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 10px #000; /* More pronounced glow for title */
+        }
+
+        /* FORM STYLES */
+        form {
+            background-color: rgba(77, 121, 66, 0.7); /* Semi-transparent dark green */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Shadow effect */
+            width: 60%; /* Adjust width as needed */
+            max-width: 600px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            background-color: #659c5a; /* Lighter green for input */
+            color: #f0f8ff;
+            border: 2px solid #30592a; /* Darker green border */
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 20px;
+            background-color: #30592a; /* Darker green button */
+            color: #f0f8ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Button shadow */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        button:hover {
+            background-color: #1f3917; /* Even darker green on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>¡Descubre tu animal espiritual!</h1>
+    <form id="quizForm">
+        <label for="question0">1. ¿En qué casa de Hogwarts estarías?</label>
+        <select id="question0" name="question0">
+            <option value="Coraje">Gryffindor (Valentía)</option>
+            <option value="Astucia">Slytherin (Astucia)</option>
+            <option value="Curiosidad">Hufflepuff (Amabilidad)</option>
+            <option value="Inteligencia">Ravenclaw (Ingenio)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question1">2. ¿En qué bando estarías si estuvieras en Star Wars?</label>
+        <select id="question1" name="question1">
+            <option value="Paciencia">Jedi (Templanza)</option>
+            <option value="Astucia">Sith (Pasión)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question2">3. En un mundo de fantasía, ¿con qué raza te identificas?</label>
+        <select id="question2" name="question2">
+            <option value="Habilidad musical">Elfo (Sabiduría y altivez)</option>
+            <option value="Destreza">Enano (Dedicación y orgullo)</option>
+            <option value="Constitución">Orco (Tenacidad e impulsividad)</option>
+            <option value="Ingenio">Gnomo (Creativo e impaciente)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question3">4. En un mundo de superpoderes, ¿con qué moral te identificas?</label>
+        <select id="question3" name="question3">
+            <option value="Carisma">Héroe (Hacer el bien dentro de los la ley)</option>
+            <option value="Astucia">Antiheroe (Hacer el bien fuera de la ley)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question4">5. ¿Serías un vampiro o un hombre lobo?</label>
+        <select id="question4" name="question4">
+            <option value="Coraje">Hombre lobo (Lealtad e impulsividad)</option>
+            <option value="Astucia">Vampiro (Inteligencia y egoísmo)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question5">6. En una aventura medieval, ¿qué clase serías?</label>
+        <select id="question5" name="question5">
+            <option value="Coraje">Guerrero (Fuerza)</option>
+            <option value="Ingenio">Mago (Inteligencia)</option>
+            <option value="Agilidad">Ladrón (Astucia)</option>
+            <option value="Carisma">Bardo (Carisma)</option>
+            <option value="Destreza">Druida (Agilidad)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question6">7. ¿A qué distrito de Panem pertenecerías?</label>
+        <select id="question6" name="question6">
+            <option value="Destreza">1 (Ambición)</option>
+            <option value="Habilidad técnica">4 (Atléticos)</option>
+            <option value="Constitución">7 (Fuerza)</option>
+            <option value="Astucia">12 (Astucia)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question7">8. ¿Qué caballero del zodiaco te representa más?</label>
+        <select id="question7" name="question7">
+            <option value="Coraje">Pegaso (Valentía)</option>
+            <option value="Paciencia">Dragón (Sabiduría y disciplina)</option>
+            <option value="Carisma">Andrómeda (Compasión)</option>
+            <option value="Coraje">Fénix (Resiliencia)</option>
+            <option value="Inteligencia">Cisne (Sentimental y control emocional)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question8">9. ¿Con qué animal de los 5 furiosos te representa más?</label>
+        <select id="question8" name="question8">
+            <option value="Constitución">Tigresa (Fuerza)</option>
+            <option value="Agilidad">Mono (Agilidad)</option>
+            <option value="Destreza">Grulla (Destreza)</option>
+            <option value="Paciencia">Mantis (Paciencia)</option>
+            <option value="Astucia">Víbora (Astucia)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question9">10. ¿Cuál sería tu emblema en digimon?</label>
+        <select id="question9" name="question9">
+            <option value="Coraje">Valor</option>
+            <option value="Carisma">Amor</option>
+            <option value="Inteligencia">Conocimiento</option>
+            <option value="Paciencia">Sinceridad</option>
+            <option value="Habilidad musical">Pureza</option>
+            <option value="Paciencia">Esperanza</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question10">11. En el mundo de Avatar, ¿qué maestro serías?</label>
+        <select id="question10" name="question10">
+            <option value="Curiosidad">Aire (Creatividad)</option>
+            <option value="Coraje">Fuego (Pasión)</option>
+            <option value="Constitución">Tierra (Coraje)</option>
+            <option value="Ingenio">Agua (Destreza)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question11">12. En One Piece, ¿qué serías?</label>
+        <select id="question11" name="question11">
+            <option value="Curiosidad">Pirata (Libertad)</option>
+            <option value="Liderazgo">Marino (Justicia)</option>
+            <option value="Coraje">Revolucionario (Determinación)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question12">13. ¿Qué animal mitológico preferirías ser?</label>
+        <select id="question12" name="question12">
+            <option value="Constitución">Dragón (Poder)</option>
+            <option value="Coraje">Fénix (Esperanza)</option>
+            <option value="Paciencia">Unicornio (Pureza)</option>
+            <option value="Ingenio">Quimera (Fortaleza)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question13">14. ¿Qué estación del año te representa más?</label>
+        <select id="question13" name="question13">
+            <option value="Curiosidad">Primavera</option>
+            <option value="Carisma">Verano</option>
+            <option value="Paciencia">Otoño</option>
+            <option value="Paciencia">Invierno</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question14">15. Si pudieras vivir en un universo ficticio, ¿cuál elegirías?</label>
+        <select id="question14" name="question14">
+            <option value="Curiosidad">Star Wars (Aventura espacial)</option>
+            <option value="Coraje">El Señor de los Anillos (Aventura épica)</option>
+            <option value="Habilidad técnica">Matrix (Ciencia ficción)</option>
+            <option value="Astucia">Juego de Tronos (Intriga política)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question15">16. ¿Qué tipo de rompecabezas te gusta más?</label>
+        <select id="question15" name="question15">
+            <option value="Inteligencia">Crucigramas</option>
+            <option value="Destreza">Sudoku</option>
+            <option value="Ingenio">Rompecabezas visuales</option>
+            <option value="Curiosidad">Acertijos de lógica</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question16">17. ¿Qué tipo de película preferirías protagonizar?</label>
+        <select id="question16" name="question16">
+            <option value="Curiosidad">Aventura</option>
+            <option value="Carisma">Comedia</option>
+            <option value="Paciencia">Drama</option>
+            <option value="Inteligencia">Ciencia ficción</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question17">18. ¿A quién te gustaría parecerte?</label>
+        <select id="question17" name="question17">
+            <option value="Paciencia">Rey Salomón</option>
+            <option value="Coraje">Aquiles</option>
+            <option value="Ingenio">Leonardo Da Vinci</option>
+            <option value="Carisma">Mahatma Gandhi</option>
+            <option value="Paciencia">Steve Jobs</option>
+            <option value="Inteligencia">Albert Einstein</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question18">19. Si fueras un superhéroe, ¿cómo sería tu traje?</label>
+        <select id="question18" name="question18">
+            <option value="Paciencia">Clásico</option>
+            <option value="Habilidad técnica">Tecnológico</option>
+            <option value="Inteligencia">Minimalista</option>
+            <option value="Carisma">Extravagante</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question19">20. Si fueras un chef, ¿qué tipo de cocina crearías?</label>
+        <select id="question19" name="question19">
+            <option value="Destreza">Gourmet</option>
+            <option value="Paciencia">Tradicional</option>
+            <option value="Ingenio">Experimental</option>
+            <option value="Habilidad musical">Repostería</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question20">21. ¿Qué tipo de inteligencia crees que te representa mejor?</label>
+        <select id="question20" name="question20">
+            <option value="Inteligencia">Lógica</option>
+            <option value="Destreza">Visual-espacial</option>
+            <option value="Curiosidad">Lingüístico-verbal</option>
+            <option value="Paciencia">Intrapersonal</option>
+            <option value="Carisma">Interpersonal</option>
+            <option value="Habilidad musical">Musical</option>
+            <option value="Constitución">Kinestésica</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question21">22. En Civil War, ¿Team Capitán América o Team Iron Man?</label>
+        <select id="question21" name="question21">
+            <option value="Coraje">Capitán América (Aboga por la independencia de los héroes del gobierno, permitiéndoles responder a amenazas sin restricciones burocráticas y con desconfianza hacia el control gubernamental)</option>
+            <option value="Liderazgo">Iron Man (Cree en la necesidad de regular a los héroes para asegurar responsabilidad y prevenir conflictos)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <label for="question22">23. ¿Qué Tortuga Ninja serías?</label>
+        <select id="question22" name="question22">
+            <option value="Liderazgo">Leonardo (Liderazgo)</option>
+            <option value="Habilidad técnica">Donatello (Ingenio y tecnología)</option>
+            <option value="Carisma">Miguel Ángel (Alegría y creatividad)</option>
+            <option value="Constitución">Rafael (Fuerza y determinación)</option>
+            <option value="None">Ninguno</option>
+        </select>
+
+        <button type="button" onclick="calculateResult()">Calcular Resultado</button>
+    </form>
+
+    <script>
+	    function calculateResult() {
+    // Definir las cualidades y sus relaciones con las respuestas
+    const qualities = {
+        "Paciencia": 0,
+        "Liderazgo": 0,
+        "Curiosidad": 0,
+        "Constitución": 0,
+        "Destreza": 0,
+        "Inteligencia": 0,
+        "Carisma": 0,
+        "Agilidad": 0,
+        "Coraje": 0,
+        "Astucia": 0,
+        "Ingenio": 0,
+        "Habilidad técnica": 0,
+        "Habilidad musical": 0
+    };
+
+    // Asignación de animales a las cualidades
+    const animals = {
+        'Búho': ['Paciencia'],
+        'Elefante': ['Paciencia'],
+        'Lobo': ['Liderazgo', 'Coraje'],
+        'León': ['Liderazgo', 'Coraje'],
+        'Gorila': ['Liderazgo', 'Constitución'],
+        'Gato': ['Curiosidad', 'Destreza', 'Astucia'],
+        'Mapache': ['Curiosidad', 'Ingenio'],
+        'Perro': ['Curiosidad', 'Carisma', 'Coraje'],
+        'Zorro': ['Curiosidad', 'Astucia'],
+        'Cuervo': ['Inteligencia', 'Astucia', 'Ingenio'],
+        'Panda': ['Carisma'],
+        'Águila': ['Destreza', 'Agilidad'],
+        'Toro': ['Constitución', 'Coraje'],
+        'Oso': ['Constitución'],
+        'Canguro': ['Constitución'],
+        'Hipopótamo': ['Constitución'],
+        'Pulpo': ['Ingenio'],
+        'Nutria': ['Habilidad técnica'],
+        'Ruiseñor': ['Habilidad musical']
+    };
+
+    // Obtener las respuestas del formulario
+    const form = document.getElementById('quizForm');
+    const responses = [];
+    for (let i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].tagName === 'SELECT') {
+            responses.push(form.elements[i].value);
+        }
+    }
+
+    // Calculate Scores (Corrected Logic)
+    for (let i = 0; i < responses.length; i++) {
+        const selectedQuality = responses[i];
+        if (selectedQuality !== 'None') { // Only process if the option wasn't "Ninguno"
+            qualities[selectedQuality]++;
+            for (const quality in qualities) {
+                if (quality !== selectedQuality) {
+                    qualities[quality]--;
+                }
+            }
+        }
+    }
+
+    // Adjust scores to be positive
+    let minScore = Math.min(...Object.values(qualities));
+    if (minScore < 0) {
+        for (const quality in qualities) {
+            qualities[quality] += Math.abs(minScore);
+        }
+    }
+
+    // Calculate total points for each animal based on associated qualities
+    const animalScores = {};
+    for (const animal in animals) {
+        let totalScore = 0;
+        animals[animal].forEach(quality => {
+            totalScore += qualities[quality];
+        });
+        animalScores[animal] = totalScore;
+    }
+
+    // Find the animal with the highest score
+    let bestAnimal = '';
+    let highestScore = -Infinity;
+    for (const animal in animalScores) {
+        if (animalScores[animal] > highestScore) {
+            bestAnimal = animal;
+            highestScore = animalScores[animal];
+        }
+    }
+
+    // Show the result in an alert
+    alert(`¡Tu animal espiritual es el ${bestAnimal} con un puntaje de ${highestScore}!`);
+}
+    </script>
+
+</body>
+</html>
