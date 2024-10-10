@@ -313,6 +313,133 @@
     </form>
 
     <script>
+    
+    function calculateResult() {
+    // Definir las cualidades y sus relaciones con las respuestas
+    const qualities = {
+        "Paciencia": 0,
+        "Liderazgo": 0,
+        "Curiosidad": 0,
+        "Constitución": 0,
+        "Destreza": 0,
+        "Inteligencia": 0,
+        "Carisma": 0,
+        "Agilidad": 0,
+        "Coraje": 0,
+        "Astucia": 0,
+        "Ingenio": 0,
+        "Habilidad técnica": 0,
+        "Habilidad musical": 0
+    };
+
+    // Asignación de animales a las cualidades
+    const animals = {
+        'Búho': ['Paciencia'],
+        'Elefante': ['Paciencia'],
+        'Lobo': ['Liderazgo', 'Coraje'],
+        'León': ['Liderazgo', 'Coraje'],
+        'Gorila': ['Liderazgo', 'Constitución'],
+        'Gato': ['Curiosidad', 'Destreza', 'Astucia'],
+        'Mapache': ['Curiosidad', 'Ingenio'],
+        'Perro': ['Curiosidad', 'Carisma', 'Coraje'],
+        'Zorro': ['Curiosidad', 'Astucia'],
+        'Cuervo': ['Inteligencia', 'Astucia', 'Ingenio'],
+        'Panda': ['Carisma'],
+        'Águila': ['Destreza', 'Agilidad'],
+        'Toro': ['Constitución', 'Coraje'],
+        'Oso': ['Constitución'],
+        'Canguro': ['Constitución'],
+        'Hipopótamo': ['Constitución'],
+        'Pulpo': ['Ingenio'],
+        'Nutria': ['Habilidad técnica'],
+        'Ruiseñor': ['Habilidad musical']
+    };
+
+    // Obtener las respuestas del formulario
+    const form = document.getElementById('quizForm');
+    const responses = [];
+    for (let i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].tagName === 'SELECT') {
+            responses.push(form.elements[i].value);
+        }
+    }
+
+    // Calcular los puntajes (similar a la lógica de Python)
+    for (let i = 0; i < responses.length; i++) {
+        const chosenQuality = responses[i];
+        if (chosenQuality !== "None") { 
+            qualities[chosenQuality]++;
+            for (const quality in qualities) {
+                if (quality !== chosenQuality) {
+                    qualities[quality]--;
+                }
+            }
+        }
+    }
+
+    // Mostrar resultados finales (usando alertas)
+    let qualitiesOutput = "Puntajes finales de cualidades:\n";
+    for (const quality in qualities) {
+        qualitiesOutput += `${quality}: ${qualities[quality]}\n`;
+    }
+    alert(qualitiesOutput);
+
+    // Ajustar puntajes para que sean positivos
+    let minScore = Math.min(...Object.values(qualities)); 
+    if (minScore < 0) {
+        for (const quality in qualities) {
+            qualities[quality] += Math.abs(minScore);
+        }
+    }
+
+    // Calcular el total de puntos para los porcentajes
+    let totalPoints = Object.values(qualities).reduce((sum, score) => sum + score, 0);
+
+    // Mostrar los porcentajes de cada cualidad
+    let percentagesOutput = "Porcentajes de cualidades:\n";
+    if (totalPoints === 0) {
+        for (const quality in qualities) {
+            percentagesOutput += `${quality}: 0.00%\n`;
+        }
+    } else {
+        for (const quality in qualities) {
+            let percentage = (qualities[quality] / totalPoints) * 100;
+            percentagesOutput += `${quality}: ${percentage.toFixed(2)}%\n`;
+        }
+    }
+    alert(percentagesOutput);
+
+    // Calcular los puntos totales para cada animal
+    const animalScores = {};
+    for (const animal in animals) {
+        let totalScore = 0;
+        animals[animal].forEach(quality => {
+            totalScore += qualities[quality]; 
+        });
+        animalScores[animal] = totalScore;
+    }
+
+    // Mostrar el puntaje acumulado de cada animal
+    let animalScoresOutput = "Puntajes totales por animal:\n";
+    for (const animal in animalScores) {
+        animalScoresOutput += `${animal}: ${animalScores[animal].toFixed(2)}\n`; 
+    }
+    alert(animalScoresOutput);
+
+    // Encontrar el animal con el puntaje más alto
+    let bestAnimal = '';
+    let highestScore = -Infinity;
+    for (const animal in animalScores) {
+        if (animalScores[animal] > highestScore) {
+            bestAnimal = animal;
+            highestScore = animalScores[animal];
+        }
+    }
+
+    // Mostrar el resultado final
+    alert(`¡El animal que mejor te representa es: ${bestAnimal} con un puntaje de ${highestScore.toFixed(2)}!`);
+}
+    /*
 	    function calculateResult() {
     // Definir las cualidades y sus relaciones con las respuestas
     const qualities = {
@@ -406,7 +533,7 @@
 
     // Show the result in an alert
     alert(`¡Tu animal espiritual es el ${bestAnimal} con un puntaje de ${highestScore}!`);
-}
+}*/
     </script>
 
 </body>
