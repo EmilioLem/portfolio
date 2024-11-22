@@ -10,4 +10,5 @@
 * [Slow reveal of R2D2](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/slowRenderImage.m)
 * [Binary grid](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/binaryGrid.m)
 * [Monte Carlo](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/MonteCarlo)
+* [Hannoi](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/Hannoi.m)
 * 
