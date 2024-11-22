@@ -12,4 +12,5 @@
 * [Monte Carlo](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/MonteCarlo)
 * [Hannoi](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/Hannoi.m)
 * [Numerical Methods of Integration](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/NumericMethods)
+* [Sorting algorithms](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/sorting)
 * 
