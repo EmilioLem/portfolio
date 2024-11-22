@@ -24,7 +24,7 @@ This project uses a **VL53L0X ToF sensor** and a servo motor to maintain a targe
 The PID (Proportional-Integral-Derivative) controller minimizes the error between the **target distance** and the measured distance using three terms:
 
 1. **Proportional (P)**:
-   - Reacts to the current error \( \text{error} = \text{targetDistance} - \text{currentDistance} \).
+   - Reacts to the current error $\( \text{error} = \text{targetDistance} - \text{currentDistance} \)$.
    - Scaled by `kp`, it provides immediate response but may overshoot.
 
 2. **Integral (I)**:
@@ -37,9 +37,9 @@ The PID (Proportional-Integral-Derivative) controller minimizes the error betwee
 
 ### PID Formula
 The PID output is calculated as:
-\[
+$\[
 \text{PID Output} = (kp \times \text{error}) + (ki \times \text{integral}) + (kd \times \text{derivative})
-\]
+\]$
 
 The output is mapped to servo positions (0° to 180°), ensuring the system maintains the desired distance.
 
