@@ -14,4 +14,5 @@
 * [Numerical Methods of Integration](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/NumericMethods)
 * [Sorting algorithms](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/sorting)
 * [Least Square Regresion](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/LeastSquaresRegresionMethods)
+* [A star](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/aStar)
 * [Line following](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/seguimiento_linea.m)
