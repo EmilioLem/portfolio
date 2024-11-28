@@ -1,5 +1,9 @@
-A = rand(30)<0.5 % randi([0,1],30,30);
+A = mod(rand(30)*256,256) % randi([0,1],30,30);
 
-imagesc(A);
+%A = [1 1 1 2; 1 3 10 1]
 
-colormap([0.239 0.718 0.894; 0.412 0.745 0.157]);
+image(A);
+
+%colormap([1 1 1; 0 0 0]);
+
+colormap(gray)

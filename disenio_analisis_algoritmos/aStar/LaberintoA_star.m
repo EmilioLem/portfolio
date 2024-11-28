@@ -1,5 +1,7 @@
 clear; close all; clc;
 
+disp("LaberintoA_star.m");
+
 function maze = generateMaze(rows, cols, obstacle_density, seed)
     rng(seed); % Configurar la semilla
     maze = rand(rows, cols) < obstacle_density; % Generar obstáculos
