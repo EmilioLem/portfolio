@@ -4,13 +4,13 @@
 * Vending machine
 * [Viga-bola](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/viga-bola)
 * [Car](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/car)
----
-
 * [Binary grid](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/binaryGrid.m)
-* [Line following](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/seguimiento_linea.m)
 * [A star](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/aStar)
-* LabView (generar números aleatorios y graficarlos)
 * [Slow reveal of R2D2](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/slowRenderImage.m)
+---
+* LabView (generar números aleatorios y graficarlos)
+
+* [Line following](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/seguimiento_linea.m)
 
 
 
