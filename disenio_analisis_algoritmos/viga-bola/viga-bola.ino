@@ -11,7 +11,7 @@ const int minDistance = 50;      // Minimum measurable distance (mm)
 // PID constants (initial values, tweak later)
 float kp = 0.2;  // Proportional gain
 float ki = 0.01;//.05; // Integral gain
-float kd = 0.8;  // Derivative gain
+float kd = 0.8;  // Derivative gain //Not sure if it was 1.8 instead
 
 // 1st recom 0.2  0.01 0.8
 // mine      0.18
