@@ -13,8 +13,6 @@
 
 ---
 
-
-* [Genetic Algoritms](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/genetics.md)
 * [Least Square Regresion](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/LeastSquaresRegresionMethods)
 
 * [Hash table research](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/hashTable.md)
