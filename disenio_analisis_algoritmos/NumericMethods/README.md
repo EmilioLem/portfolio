@@ -62,3 +62,59 @@ These methods are fundamental in numerical analysis, providing computational sol
 - Finance: Option pricing, risk assessment
 - Biology: Population dynamics modeling
 - Computer Graphics: Curve approximation
+
+---
+
+**Trapecio.m (Integración por regla del trapecio)**
+
+x^2 (integrar x cuadrado)
+
+sin(x) (integrar seno de x)
+
+exp(x) (integrar función exponencial)
+
+1/(1+x^2) (integrar función racional)
+
+
+**Simpson.m (Integración por regla de Simpson 3/8)**
+
+x^3 (integrar x al cubo)
+
+cos(x) (integrar coseno de x)
+
+log(x) (integrar logaritmo natural)
+
+sqrt(x) (integrar raíz cuadrada)
+
+
+**Secante.m (Método de la secante para encontrar raíces)**
+
+x^2 - 4 (encuentra raíz de x² - 4 = 0)
+
+cos(x) - x (encuentra punto de intersección)
+
+exp(x) - 3 (encuentra valor donde e^x = 3)
+
+x^3 - x - 2 (encuentra raíz de polinomio)
+
+
+**Runge_Kutta.m (Método de Runge-Kutta para ecuaciones diferenciales)**
+
+x + y (ejemplo simple de EDO)
+
+y (otra EDO sencilla)
+
+-2*x*y (EDO no lineal)
+
+x*y (otra variante de EDO)
+
+
+**Newton.m (Método de Newton para encontrar raíces)**
+
+x^2 - 4 (encuentra raíces)
+
+cos(x) - x (punto de intersección)
+
+exp(x) - 3 (encuentra valor específico)
+
+x^3 - 2*x - 5 (raíz de polinomio)
