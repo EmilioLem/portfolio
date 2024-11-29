@@ -7,8 +7,8 @@
 * [Binary grid](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/binaryGrid.m)
 * [A star](https://github.com/EmilioLem/portfolio/tree/main/disenio_analisis_algoritmos/aStar)
 * [Slow reveal of R2D2](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/slowRenderImage.m)
----
 * LabView (generar números aleatorios y graficarlos)
+---
 
 * [Line following](https://github.com/EmilioLem/portfolio/blob/main/disenio_analisis_algoritmos/seguimiento_linea.m)
 
