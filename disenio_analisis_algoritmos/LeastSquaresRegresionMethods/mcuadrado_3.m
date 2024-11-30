@@ -14,6 +14,8 @@ y = 2*x.^3 - 3*x.^2 + 4*x - 5 + randn(1, n); % Generar datos de acuerdo a y = 2x
 
 X = [x.^3; x.^2; x; ones(1, n)]'; % Matriz de diseño
 
+
+
 % Aquí 'X' es n x 4 y 'y' es 1 x n, por lo que la transposición asegura que las dimensiones sean correctas
 
 % Resolver el sistema de ecuaciones
